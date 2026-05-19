@@ -5,7 +5,7 @@ regional performance, and customer segmentation across a
 multi-category business dataset.
 
 ## Tools
-SQL, Microsoft Excel (data visualization)
+SQL, Microsoft Excel and Power BI (data visualization)
 
 ## Data
 Sample retail superstore dataset via Kaggle — includes order data, 
