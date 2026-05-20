@@ -42,5 +42,14 @@ WHERE TABLE_NAME = 'superstore_raw';
 -- Finding: Raw and original table number of columns match (21).
 
 
+-- 1.5 Verify no empty rows were introduced during import.
+SELECT COUNT(*)
+FROM superstore_raw
+WHERE `Order ID` IS NULL 
+   OR `Order Date` IS NULL 
+   OR Sales IS NULL;
+
+-- Finding: 0 null values in key columns. Import is clean.
+
 
 
