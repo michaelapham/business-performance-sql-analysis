@@ -34,7 +34,12 @@ product categories, regional sales, customer segments, and profit margins.
 - Where are the biggest opportunities to reduce costs or improve margins?
 
 ## Key Findings
-- ...
+- **Furniture is significantly UNDERperforming** - Furniture had 742,000 sales, which is similar to Technology and Office Supplies sales, BUT ONLY 2.49% profit margin VS. 17.4% for Technology and 17.0% for Office supplies.
+- **Tables are a significant cause of profit loss, followed by Bookcases** - Tables (Furniture) generated significant NEGATIVE total profit of -$17,725.59, followed by Bookcases (Furniture) NEGATIE total profit of -$3472.56, dragging down the entire Furniture category.
+- **The West region leads in BOTH sales and profit** - West had highest sales AND profit, whereas Central had the weakest profit margin despite moderate sales volume.
+- **Heavy discounting correlates with NEGATIVE profit** - Total profits go from positive to negative on orders with 30% discount, with significant losses in profit margin from 50% discount (-35.71% profit margin) to 60% discount (-89.46% profit margin) and 70% discount (-98.66% profit margin) to 80% discount (-180.03% profit margin).
+- **TOP 5 states by profit** - 1) California 2) New York 3) Washington 4) Michigan 5) Virginia
+- **BOTTOM 5 states by profit** - 1) Texas 2) Ohio 3) Pennsylvania 4) Illinois 5) North Carolina
 
 ## Author
 Michael Pham
