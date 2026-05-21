@@ -21,8 +21,19 @@ LIMIT 10;
 -- customer info, product categories, and financial metrics
 -- (sales, quantity, discount, profit) across U.S. regions.
 
+-- 2. Check row count, should have 9994 rows.
+SELECT COUNT(*) AS total_rows
+FROM superstore_raw;
+
+-- Finding: 9994 rows, no missing rows.
+
+-- 2. Check columns, data types, nullability.
+DESCRIBE superstore_raw;
+
+-- Finding: All TEXT types, default NULL.
+
 -- 2.2 Check distinct product categories
-SELECT DISTINCT Category
+SELECT DISTINCT category
 FROM superstore_raw;
 
 -- Finding: Three categories — Furniture, 
@@ -30,7 +41,7 @@ FROM superstore_raw;
 
 
 -- 2.3 Check distinct regions
-SELECT DISTINCT Region
+SELECT DISTINCT region
 FROM superstore_raw;
 
 -- Finding: Four regions — South, West,
@@ -38,7 +49,7 @@ FROM superstore_raw;
 
 
 -- 2.4 Check distinct customer segments
-SELECT DISTINCT Segment
+SELECT DISTINCT segment
 FROM superstore_raw;
 
 -- Finding: Three segments — Consumer, 
@@ -46,7 +57,7 @@ FROM superstore_raw;
 
 
 -- 2.5 Check distinct ship modes
-SELECT DISTINCT `Ship Mode`
+SELECT DISTINCT ship_mode
 FROM superstore_raw;
 
 -- Finding: Four ship modes — Second Class,
@@ -55,20 +66,19 @@ FROM superstore_raw;
 
 -- 2.6 Check date range of dataset
 SELECT 
-    MIN(`Order Date`) AS earliest_order,
-    MAX(`Order Date`) AS latest_order
+    MIN(order_date) AS earliest_order,
+    MAX(order_date) AS latest_order
 FROM superstore_raw;
 
 -- Finding: Date ranges from 1-2017 to 9-2017, which
 -- is not correct. Due to dates stored as TEXT in raw table.
 -- Accurate date parsing handled in 03_cleaning.
 
-
 -- 2.7 Check for duplicate Order IDs
 SELECT 
-    `Order ID`, COUNT(*) AS cnt
+    order_id, COUNT(*) AS cnt
 FROM superstore_raw
-GROUP BY `Order ID`
+GROUP BY order_id
 HAVING COUNT(*) > 1;
 
 -- Finding: Multiple rows per Order ID, which is expected
@@ -78,17 +88,17 @@ HAVING COUNT(*) > 1;
 -- 2.8 Check for NULL or empty values 
 -- across all key columns
 SELECT
-	SUM(`Order ID` IS NULL OR `Order ID` = '')
+	SUM(order_id IS NULL OR order_id = '')
 		AS order_id_null,
-    SUM(`Customer Name` IS NULL OR `Customer Name` = '')
+    SUM(customer_name IS NULL OR customer_name = '')
 		AS customer_name_null,
-    SUM(`Category` IS NULL OR `Category` = '')
+    SUM(category IS NULL OR category = '')
 		AS category_null,
-    SUM(`Region` IS NULL OR `Region` = '')
+    SUM(region IS NULL OR region = '')
 		AS region_null,
-    SUM(`Sales` IS NULL OR `Sales` = '')
+    SUM(sales IS NULL OR sales = '')
 		AS sales_null,
-    SUM(`Profit` IS NULL OR `Profit` = '')
+    SUM(profit IS NULL OR profit = '')
 		AS profit_null
 FROM superstore_raw;
 
@@ -97,18 +107,18 @@ FROM superstore_raw;
 
 -- 2.9 Check sales and profit value ranges
 SELECT
-    MIN(CAST(Sales AS DECIMAL(10,2))) AS min_sales,
-    MAX(CAST(Sales AS DECIMAL(10,2))) AS max_sales,
-    ROUND(AVG(CAST(Sales AS DECIMAL(10,2))), 2) 
+    MIN(CAST(sales AS DECIMAL(10,2))) AS min_sales,
+    MAX(CAST(sales AS DECIMAL(10,2))) AS max_sales,
+    ROUND(AVG(CAST(sales AS DECIMAL(10,2))), 2) 
         AS avg_sales,
-    MIN(CAST(Profit AS DECIMAL(10,2))) AS min_profit,
-    MAX(CAST(Profit AS DECIMAL(10,2))) AS max_profit,
-    ROUND(AVG(CAST(Profit AS DECIMAL(10,2))), 2) 
+    MIN(CAST(profit AS DECIMAL(10,2))) AS min_profit,
+    MAX(CAST(profit AS DECIMAL(10,2))) AS max_profit,
+    ROUND(AVG(CAST(profit AS DECIMAL(10,2))), 2) 
         AS avg_profit
 FROM superstore_raw;
 
--- Finding: 229.39 average sales (0, 22638.48) with an
--- average profit of $28.59 (-$6599.98, $8399.98).
+-- Finding: 229.86 average sales (0.44, 22638.48) with an
+-- average profit of $28.66 (-$6599.98, $8399.98).
 -- Note: Negative profit values likely indicate
 -- orders sold at a loss. Flagged for 
 -- analysis in 04_analysis.
@@ -116,9 +126,9 @@ FROM superstore_raw;
 
 -- 2.9 Check distribution of orders by region
 SELECT 
-    Region, COUNT(*) AS order_count
+    region, COUNT(*) AS order_count
 FROM superstore_raw
-GROUP BY Region
+GROUP BY region
 ORDER BY order_count DESC;
 
 -- Finding: West had the most orders at 3203 orders,
@@ -129,9 +139,9 @@ ORDER BY order_count DESC;
 
 -- 2.10 Check distribution of orders by category
 SELECT 
-    Category, COUNT(*) AS order_count
+    category, COUNT(*) AS order_count
 FROM superstore_raw
-GROUP BY Category
+GROUP BY category
 ORDER BY order_count DESC;
 
 -- Finding: Office supplies had most orders at 6026 orders,
@@ -141,16 +151,15 @@ ORDER BY order_count DESC;
 
 -- 2.11 Check discount value range
 SELECT
-    MIN(CAST(Discount AS DECIMAL(4,2))) 
+    MIN(CAST(discount AS DECIMAL(4,2))) 
         AS min_discount,
-    MAX(CAST(Discount AS DECIMAL(4,2))) 
+    MAX(CAST(discount AS DECIMAL(4,2))) 
         AS max_discount,
-    ROUND(AVG(CAST(Discount AS DECIMAL(4,2))), 2) 
+    ROUND(AVG(CAST(discount AS DECIMAL(4,2))), 2) 
         AS avg_discount,
-    COUNT(DISTINCT Discount) AS distinct_discount_values
+    COUNT(DISTINCT discount) AS distinct_discount_values
 FROM superstore_raw;
 
--- Finding: Discounts range from 0-99.99% discounts, with
--- an average of 33% discount.
--- Data quality note: Discount imported as TEXT.
--- Will be cast to DECIMAL in 03_cleaning.
+-- Finding: Discounts range from 0-80% discounts with
+-- an average discount of 16%. There are 12 different
+-- values of discount.
