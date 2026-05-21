@@ -41,6 +41,12 @@ product categories, regional sales, customer segments, and profit margins.
 - **TOP 5 states by profit** - 1) California 2) New York 3) Washington 4) Michigan 5) Virginia
 - **BOTTOM 5 states by profit** - 1) Texas 2) Ohio 3) Pennsylvania 4) Illinois 5) North Carolina
 
+## How to Reproduce
+1. Download the dataset from  
+   kaggle.com/datasets/vivek468/superstore-dataset-final
+2. Run scripts in order:  
+   01 → 02 → 03 → 04
+   
 ## Author
 Michael Pham
 github.com/michaelapham
