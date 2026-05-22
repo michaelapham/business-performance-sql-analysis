@@ -52,7 +52,7 @@ product categories, regional sales, customer segments, and profit margins.
    01 → 02 → 03 → 04
 3. Open "dashboard/05_dashboard_superstore.pbix" in Power BI
 
-**Note:** Use `LOAD DATA INFILE` with "CHARACTER SET latin1" for import. The MySQL Table Data Import Wizard causes column misalignment and corrupts certain column values.
+**Note:** Use `LOAD DATA INFILE` with `CHARACTER SET latin1` for import. The MySQL Table Data Import Wizard causes column misalignment and corrupts certain column values.
 
 ## Author
 Michael Pham
