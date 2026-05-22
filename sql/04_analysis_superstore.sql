@@ -190,6 +190,9 @@ FROM superstore_clean
 GROUP BY order_year
 ORDER BY order_year ASC;
 
--- Finding: Total sales AND total profits
--- have been rising year over year
+-- Finding: Total profits have been rising year over year
 -- from 2014 to 2017.
+-- Total sales dipped slightly from 2014 to 2015 while
+-- profits grew, which suggests improved efficiency during that time.
+-- Both sales and profits grew sharply from 2015 to 2017,
+-- showing successful scaling.
