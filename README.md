@@ -47,10 +47,10 @@ product categories, regional sales, customer segments, and profit margins.
 
 ## How to Reproduce
 1. Download the dataset from  
-   kaggle.com/datasets/vivek468/superstore-dataset-final
+   `kaggle.com/datasets/vivek468/superstore-dataset-final`
 2. Run scripts in order:  
    01 → 02 → 03 → 04
-3. Open "dashboard/05_dashboard_superstore.pbix" in Power BI
+3. Open `dashboard/05_dashboard_superstore.pbix` in Power BI
 
 **Note:** Use `LOAD DATA INFILE` with `CHARACTER SET latin1` for import. The MySQL Table Data Import Wizard causes column misalignment and corrupts certain column values.
 
