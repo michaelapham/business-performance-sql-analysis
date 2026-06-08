@@ -55,6 +55,6 @@ product categories, regional sales, customer segments, and profit margins.
 **Note:** Use `LOAD DATA INFILE` with `CHARACTER SET latin1` for import. The MySQL Table Data Import Wizard causes column misalignment and corrupts certain column values.
 
 ## Author
-Michael Pham
-github.com/michaelapham
-linkedin.com/in/michaelapham99
+### Michael Pham
+📫 **LinkedIn:** https://www.linkedin.com/in/michaelapham99/  
+💻 **GitHub:** https://github.com/michaelapham/  
